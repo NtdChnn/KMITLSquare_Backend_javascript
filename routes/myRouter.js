@@ -61,11 +61,11 @@ router.post('/register_shopPickup/:shopID',(req,res)=>{
 })
 
 //เพิ่มสินค้า //เทสแล้ว //เหลืออัพรูป
-router.post('/register_product/:shopID/:shopCategory',upload.single('productPic'),(req,res)=>{
+router.post('/register_product/:shopID',upload.single('productPic'),(req,res)=>{
     console.log(req.file)
     let data = new shopProduct({
         shopID:req.params.shopID,
-        shopCategory:req.params.shopCategory,
+        productCategory:req.body.shopCategory,
         productName:req.body.productName,
         productPic:req.file.filename,
         productPrice:req.body.productPrice,
@@ -124,7 +124,6 @@ router.post('/update_shop/:shopID',(req,res)=>{
         shopOwnerID: req.body.userID, 
         shopName: req.body.shopName,
         shopDescription: req.body.shopDescription,
-        shopCategory: req.body.shopCategory,
         shopTel: req.body.shopTel
     }
     shop.findByIdAndUpdate({_id: req.params.shopID},data,{useFindAndModify:false}).exec(err=>{
@@ -150,6 +149,7 @@ router.post('/update_shopPickup/:shopID',(req,res)=>{
 router.post('/update_product/:productID',upload.single('productPic'),(req,res)=>{
     let data = ({
         productName:req.body.productName,
+        productCategory:req.body.shopCategory,
         productPic:req.file.filename,
         productPrice:req.body.productPrice,
         productDescription:req.body.productDescription,
@@ -219,14 +219,6 @@ router.get('/show_infoShop/:shopID',(req,res)=>{ //หาด้วย shopID
     //res.redirect('/') //ไปหน้าก่อนหน้า
 })
 
-//ดึงข้อมูลร้านค้าไปแสดง ใช้ Category 
-router.get('show_infoShopByCategory/:shopCategory',(req,res)=>{
-    shop.find({shopCategory : req.params.shopCategory}).exec((err,doc)=>{
-        res.json({shop:doc}) //ส่งเป็น json
-    })
-    res.status(200)
-})
-
 //ดึงข้อมูลร้านค้าที่มีอยู่ไปโชว์ ใช้ userID เจ้าของร้าน //เทสแล้ว
 router.get('/show_infoShopByUser/:userID',(req,res)=>{ //หาด้วย shopID
     shop.find({shopOwnerID : req.params.userID}).exec((err,doc)=>{
@@ -248,6 +240,15 @@ router.get('/show_shopPickup/:shopID',(req,res)=>{ //หาด้วย shopID
 //ดึงสินค้าในร้านค้านั้นๆไปแสดง //เทสแล้ว
 router.get('/show_productByShop/:shopID',(req,res)=>{ //หาด้วย shopID
     shopProduct.find({shopID : req.params.shopID}).exec((err,doc)=>{
+        res.json({shopProduct:doc}) //ส่งเป็น json
+    })
+    res.status(200)
+    //res.redirect('/') //ไปหน้าก่อนหน้า
+})
+
+//ดึงสินค้าด้วยประเภท
+router.get('/show_productByCategory/:productCategory',(req,res)=>{ //หาด้วย Category
+    shopProduct.find({productCategory : req.params.productCategory}).exec((err,doc)=>{
         res.json({shopProduct:doc}) //ส่งเป็น json
     })
     res.status(200)

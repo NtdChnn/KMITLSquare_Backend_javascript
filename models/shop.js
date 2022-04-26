@@ -14,30 +14,11 @@ mongoose.connect('mongodb+srv://admin101:admin101@cluster0.8fugg.mongodb.net/KMI
 
 // ออกแบบ Schema
 const shopSchema = mongoose.Schema({
-    shopOwnerID:{
-        type:String
-    },
-    shopName:{
-        type: String, 
-        // required: true,
-    },
-    shopDescription:{
-        type: String, 
-        // required: true,
-    },
-    shopCategory:{
-        type: String, 
-        // required: true,
-    },
-    shopTel:{
-        type: String, 
-        // required: true,
-    }
-    // shopOwnerID:String,
-    // shopName:String,
-    // shopDescription:String,
-    // shopCategory:String,
-    // shopTel:String
+    shopOwnerID:String,
+    shopName:String,
+    shopDescription:String,
+    shopCategory:String,
+    shopTel:String
 })
 
 //สร้างโมเดล
