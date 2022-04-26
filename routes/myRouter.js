@@ -218,6 +218,14 @@ router.get('/show_infoShop/:shopID',(req,res)=>{ //หาด้วย shopID
     //res.redirect('/') //ไปหน้าก่อนหน้า
 })
 
+//ดึงข้อมูลร้านค้าไปแสดง ใช้ Category 
+router.get('show_infoShopByCategory/:shopCategory',(req,res)=>{
+    shop.find({shopCategory : req.params.shopCategory}).exec((err,doc)=>{
+        res.json({shop:doc}) //ส่งเป็น json
+    })
+    res.status(200)
+})
+
 //ดึงข้อมูลร้านค้าที่มีอยู่ไปโชว์ ใช้ userID เจ้าของร้าน //เทสแล้ว
 router.get('/show_infoShopByUser/:userID',(req,res)=>{ //หาด้วย shopID
     shop.find({shopOwnerID : req.params.userID}).exec((err,doc)=>{
