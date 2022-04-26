@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 // ออกแบบ Schema
 let shopProductSchema = mongoose.Schema({
     shopID:String,
+    shopCategory:String,
     productName:String,
     productPic:String,
     productPrice:Number,

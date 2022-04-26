@@ -61,10 +61,11 @@ router.post('/register_shopPickup/:shopID',(req,res)=>{
 })
 
 //เพิ่มสินค้า //เทสแล้ว //เหลืออัพรูป
-router.post('/register_product/:shopID',upload.single('productPic'),(req,res)=>{
+router.post('/register_product/:shopID/:shopCategory',upload.single('productPic'),(req,res)=>{
     console.log(req.file)
     let data = new shopProduct({
         shopID:req.params.shopID,
+        shopCategory:req.params.shopCategory,
         productName:req.body.productName,
         productPic:req.file.filename,
         productPrice:req.body.productPrice,
