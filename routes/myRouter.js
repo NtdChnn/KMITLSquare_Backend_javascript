@@ -18,7 +18,7 @@ const productReview = require('../models/productReview')
 const multer = require('multer')
 const storage = multer.diskStorage({
     description:function(req,file,cb){
-        cb(null,'./images') //ตำแหน่งจัดเก็บ
+        cb(null,'./images/products') //ตำแหน่งจัดเก็บ
     },
     filename:function(req,file,cb){
         cb(null,Date.now()+'.jpg') //เปลี่ยนชื่อไฟล์ ป้องกันซ้ำ
