@@ -17,7 +17,7 @@ const productReview = require('../models/productReview')
 //อัพโหลดไฟล์
 const multer = require('multer')
 const storage = multer.diskStorage({
-    description:function(req,file,cb){
+    destination:function(req,file,cb){
         cb(null,'./images/products') //ตำแหน่งจัดเก็บ
     },
     filename:function(req,file,cb){
