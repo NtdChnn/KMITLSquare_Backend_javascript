@@ -2,15 +2,15 @@
 const mongoose = require('mongoose')
 
 //เชื่อม mongodb
-// mongoose.connect('mongodb+srv://admin101:admin101@cluster0.8fugg.mongodb.net/KMITLsquare?retryWrites=true&w=majority',{
-//     useNewUrlParser:true,
-//     useUnifiedTopology:true
-// }).catch(err => console.log(err))
-
-mongoose.connect('mongodb://localhost:27017',{
+mongoose.connect('mongodb+srv://admin101:admin101@cluster0.8fugg.mongodb.net/KMITLsquare?retryWrites=true&w=majority',{
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).catch(err => console.log(err))
+
+// mongoose.connect('mongodb://localhost:27017',{
+//     useNewUrlParser:true,
+//     useUnifiedTopology:true
+// }).catch(err => console.log(err))
 
 // ออกแบบ Schema
 const shopSchema = mongoose.Schema({
